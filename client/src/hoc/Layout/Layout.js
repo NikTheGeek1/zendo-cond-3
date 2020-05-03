@@ -1,16 +1,14 @@
 import React from 'react';
 
-import Aux from '../Auxiliary/Auxiliary';
-import Logo from '../../components/Logo/Logo';
-import Signature from '../../components/Signature/Signature';
+import UoeSignature from '../../components/uoeSignature/uoeSignature';
 
 import classes from './Layout.module.css';
 
-const layout = ( ) => {
+const layout = ( props ) => {
   return (
     <div className={classes.Layout}>
-      <Signature />
-      <Logo />
+      <UoeSignature />
+      <main>{props.children}</main>
     </div>
   );
 }

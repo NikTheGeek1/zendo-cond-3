@@ -1,0 +1,10 @@
+.Task {
+  /* Positioning in the center of the y-screen */
+  position: absolute;
+  left: 50%;
+  top: 100px;
+  transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0); /* for IE 9 */
+  -webkit-transform: translate(-50%, 0); /* for Safari */
+
+}
