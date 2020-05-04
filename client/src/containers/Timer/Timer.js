@@ -50,8 +50,15 @@ UNSAFE_componentWillReceiveProps(nextProps){
     }
     let timerComponent = (
         <div className={classesArray.join(' ')} >
-          <h3>{this.pad(this.state.minutes, 2)}:{this.pad(this.state.seconds,2)}<br/>
-          <span style={{fontSize:"10px", position:"fixed", top:"37.px", left:"13.5px"}}>Timer</span></h3>
+          <h3 style={{
+            fontSize: "25px",
+            position:"fixed", top:"-17px", left:"8px",
+            fontFamily:'Indie Flower'}}>{this.pad(this.state.minutes, 2)}:{this.pad(this.state.seconds,2)}<br/>
+          <span style={{
+            fontSize: "15px",
+            position:"fixed", top:"32px", left:"15px",
+            fontFamily:'Indie Flower'}}>
+          Timer</span></h3>
           <div className={classes.BorderLine}> </div>
         </div>
     );

@@ -6,7 +6,7 @@ import Button from '../../Button/Button';
 
 const Ethics = ( props ) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  React.useEffect(() => props.timer(1, 10, false), []);
+  React.useEffect(() => props.timer(1, 5, false), []);
 
   return(
     <Frame frameTitle="Information for participants">
