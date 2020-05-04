@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 import Ethics from './Ethics/Ethics';
 import Notes from './Notes/Notes';
 import Instructions from './Instructions/Instructions';
@@ -8,9 +9,9 @@ import classes from './Task.module.css';
 
 class Task extends React.Component {
 state = {
-    showEthics: false,
+    showEthics: true,
     showNotes: false,
-    showInstructions: true,
+    showInstructions: false,
     showGame: false
 }
 
@@ -33,17 +34,17 @@ render () {
 
   let ethics = null;
   if (this.state.showEthics){
-    ethics = <Ethics buttonClicked={this.ethicsButtonHandler} />;
+    ethics = <Ethics timer={this.props.timer} buttonClicked={this.ethicsButtonHandler} />;
   }
 
   let notes = null;
   if (this.state.showNotes){
-    notes = <Notes buttonClicked={this.notesButtonHandler} />;
+    notes = <Notes timer={this.props.timer} buttonClicked={this.notesButtonHandler} />;
   }
 
   let instructions = null;
   if (this.state.showInstructions){
-    instructions = <Instructions buttonClicked={this.instructionsButtonHandler} />
+    instructions = <Instructions timer={this.props.timer} buttonClicked={this.instructionsButtonHandler} />
   }
 
   let game = null;

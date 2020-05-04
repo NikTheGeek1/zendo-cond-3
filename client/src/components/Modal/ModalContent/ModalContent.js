@@ -1,5 +1,4 @@
 import React from 'react';
-import Aux from '../../../hoc/Auxiliary/Auxiliary';
 
 const modalContent = ( props ) => {
   return (

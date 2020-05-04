@@ -1,5 +1,6 @@
 import React from 'react';
 import Aux from '../../../hoc/Auxiliary/Auxiliary';
+// import Timer from '../../../containers/Timer/Timer';
 
 import Ins1 from './Ins1/Ins1';
 import Ins2 from './Ins2/Ins2';
@@ -11,22 +12,22 @@ import Ins7 from './Ins7/Ins7';
 import Ins8 from './Ins8/Ins8';
 import CompQuiz from './ComprehensionQuiz/ComprehensionQuiz';
 
-import Modal from '../../Modal/Modal';
+
 
 class Instructions extends React.Component {
   state = {
-    showIns1: false,
+    showIns1: true,
     showIns2: false,
     showIns3: false,
     showIns4: false,
     showIns5: false,
     showIns6: false,
     showIns7: false,
-    showIns8: true,
+    showIns8: false,
     compQuiz: false
   }
-  componentDidUpdate() {
-    console.log("[ Instructions ] componentDidMount");
+  componentDidMount() {
+    this.props.timer(15, 0, false);
   }
   // navigation ins 1
   ins1ButtonHandler = () => {

@@ -3,7 +3,10 @@ import React from 'react';
 import Frame from '../../Frame/Frame';
 import Button from '../../Button/Button';
 
-const notes = ( props ) => {
+const Notes = ( props ) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // React.useEffect(() => props.timer(1, 5, false), []);
+
   return (
     <Frame frameTitle="Thank you for joining our experiment">
       <p>Please note that:</p>
@@ -23,4 +26,4 @@ const notes = ( props ) => {
   );
 }
 
-export default notes;
+export default Notes;

@@ -51,10 +51,7 @@ modalHandler = () => {
           clicked={this.props.buttonClicked}>Amazing! You can now start the game.</ModalContent>
         );
     }
-    let buttonToContinue = <Button clicked={this.modalHandler}><span>Continue</span></Button>;
-    if (this.state.showModal) {
-      let buttonToContinue = <Button clicked={this.props.buttonClickedCORRECT}><span>Continue</span></Button>;
-    }
+
     const questions = this.state.questions.map((q, idx) => {
       return (
         <CQQ key={q.id} num={q.id} changed={(e) => this.changedHandler(e, idx)}>{q.q}</CQQ>

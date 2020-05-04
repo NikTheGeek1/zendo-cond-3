@@ -4,7 +4,10 @@ import Frame from '../../Frame/Frame';
 
 import Button from '../../Button/Button';
 
-const ethics = ( props ) => {
+const Ethics = ( props ) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  React.useEffect(() => props.timer(1, 10, false), []);
+
   return(
     <Frame frameTitle="Information for participants">
       <p><b>Nature of the study.&nbsp;</b>You are about to participate in an experiment in which you will use your scientific investigation skills. You will collaborate with another player (MTurk worker) and update your initial choices based on the other person's judgments. After the experiment, we will ask you to provide some basic demographics (e.g., age). Your session should last up for around 30 minutes and your responses will be recorded. You will be given full instructions shortly and will be able to ask any questions you may have.</p>
@@ -29,4 +32,4 @@ const ethics = ( props ) => {
 }
 
 
-export default ethics;
+export default Ethics;
