@@ -4,6 +4,7 @@ import React from 'react';
 import Ethics from './Ethics/Ethics';
 import Notes from './Notes/Notes';
 import Instructions from './Instructions/Instructions';
+import Game from './Game/Game';
 
 import classes from './Task.module.css';
 
@@ -49,7 +50,8 @@ render () {
 
   let game = null;
   if (this.state.showGame){
-    game = <h1>You reached the game!</h1>
+    // this.props.timer(0, 0, true);
+    game = <Game></Game>
   }
 
     return(

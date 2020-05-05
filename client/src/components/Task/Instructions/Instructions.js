@@ -24,7 +24,7 @@ class Instructions extends React.Component {
     showIns6: false,
     showIns7: false,
     showIns8: false,
-    compQuiz: false
+    showCompQuiz: false
   }
   componentDidMount() {
     this.props.timer(15, 0, false);
@@ -84,7 +84,7 @@ class Instructions extends React.Component {
 
   // navigation ins 8
   ins8ButtonHandler = () => {
-    this.setState({showIns8: false, showcompQuiz: true})
+    this.setState({showIns8: false, showCompQuiz: true})
   };
   ins8ButtonPreHandler = () => {
     this.setState({showIns8: false, showIns7: true})
@@ -92,7 +92,7 @@ class Instructions extends React.Component {
 
   // navigation compQuiz
   compQuizModalButtonWRONG = () => {
-    this.setState({showcompQuiz: false, showIns1: true})
+    this.setState({showCompQuiz: false, showIns1: true})
   };
   // We don't need this one as we have the button handler from above (Task.js)
   // since this page is the last of the instructions and then the game begins
@@ -100,8 +100,9 @@ class Instructions extends React.Component {
   //   this.setState({showcompQuiz: false, showIns8: true})
   // };
   compQuizButtonPreHandler = () => {
-    this.setState({showcompQuiz: false, showIns8: true})
+    this.setState({showCompQuiz: false, showIns8: true})
   };
+
   render() {
     let ins1 = null;
     if (this.state.showIns1){
@@ -165,7 +166,7 @@ class Instructions extends React.Component {
       );
     }
     let compQuiz = null;
-    if (this.state.showcompQuiz){
+    if (this.state.showCompQuiz){
       compQuiz = (
         <CompQuiz
           ModalButtonWRONG={this.compQuizModalButtonWRONG}
