@@ -26,7 +26,7 @@ app.get('*', (req, res) => {
 
 
 // Serve the static files from the React app
-const allowedOrigins = ['https://zendo-cond-3.herokuapp.com/',
+const allowedOrigins = ['https://zendo-cond-3.herokuapp.com',
     'http://localhost:5000'];
 app.use(cors({
     origin: (origin, callback) => {
