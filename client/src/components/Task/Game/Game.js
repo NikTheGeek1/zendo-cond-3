@@ -6,6 +6,8 @@ import Script from 'react-load-script';
 import classes from './Game.module.css';
 import Button from '../../Button/Button';
 
+import generateTokenHelper from '../../../utility/generateTokenHelper';
+
 class Game extends React.Component {
   state = {
     trial: 1,
@@ -21,7 +23,7 @@ class Game extends React.Component {
       this.props.onStoringStartTime(new Date());
     }
     if (!this.props.tokenId) {
-      this.props.onStoringTokenId(Math.random());
+      this.props.onStoringTokenId(generateTokenHelper(5));
     }
   }
 
