@@ -81,7 +81,7 @@ class Game extends React.Component {
   };
 
   sendDataToServer = data => {
-    axios.post('http://localhost:5000/storeData', data)
+    axios.post('https://zendo-cond-3.herokuapp.com/storeData', data)
       .catch(function (error) {
         console.log(error);
       });
