@@ -14,8 +14,8 @@ state = {
     showEthics: false,
     showNotes: false,
     showInstructions: false,
-    showGame: false,
-    showDebrief: true
+    showGame: true,
+    showDebrief: false
 }
 
 ethicsButtonHandler = () => {
