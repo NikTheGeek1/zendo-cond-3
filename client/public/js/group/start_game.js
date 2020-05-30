@@ -38,7 +38,7 @@ function StartIframe() {
 };
 
 
-function StartIframe2()
+function StartIframe2(isFirstTrial=true)
 {
 
     //rand_trial = Math.floor(Math.random()*9);
@@ -96,7 +96,7 @@ function StartIframe2()
           //iframeContent.location.reload(); // restarting iframe
           // pausing to fully reload the iframe
 
-          iframeContent.Start(rules[rand_trial], examples, test_cases, rule_names[rand_trial], rand_counter, posit_ix, trial_num);
+          iframeContent.Start(rules[rand_trial], examples, test_cases, rule_names[rand_trial], rand_counter, posit_ix, trial_num, false, isFirstTrial);
 
     }
   }else if (trial_num === 6) {// closing of if statement

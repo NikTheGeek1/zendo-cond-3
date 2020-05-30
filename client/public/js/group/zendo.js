@@ -52,15 +52,23 @@ b2PolygonShape  = Box2D.Collision.Shapes.b2PolygonShape,
 b2ContactListener = Box2D.Dynamics.b2ContactListener;
 
 
-
-function Start(fun, ss, tt, rn, counterbalance, posit_ix_, tr_count)
+function Start(fun, ss, tt, rn, counterbalance, posit_ix_, tr_count, isPosterior = false, isFirstTrial = true)
 {
-
     trial_num = tr_count;
     posit_ix = posit_ix_;
     //Create the stage
-    stage = new Stage("c");
-
+    if(!isPosterior){
+      if(isFirstTrial){
+        stage = new Stage("c");
+      }
+    test_count = 0;//0;
+    trialdata = [];
+  } else {
+    test_count = 1;//0;
+    trialdata = [trialdata[0]];
+    trial_picsOld = trial_pics;
+  }
+    ct_balance = counterbalance;
     //CurrentRule = parent.eval(fun);//Set the rule up globally (check it works)
     rule = fun;
     console.log(rule);
@@ -70,11 +78,10 @@ function Start(fun, ss, tt, rn, counterbalance, posit_ix_, tr_count)
 	  rule_name = rn;
 
     id_count = 0;//Make sure the id count is reset when you start a new trial
-    test_count = 0;//0;
+
 	  trial_pics = [];
 	  phase = 0;
     //var pixel_ratio =  window.devicePixelRatio;
-    trialdata = [];
 
 
 
@@ -252,7 +259,6 @@ function Start(fun, ss, tt, rn, counterbalance, posit_ix_, tr_count)
     cbtnPost.x = stage.stageWidth /2 - t1.textWidth/2;//stage.stageWidth * 0.90;//
     cbtnPost.y = stage.stageHeight * 0.93;
 
-    cbtnPost.addEventListener(MouseEvent.CLICK, ContinuePosterior);
     cbtnPost.addEventListener(MouseEvent.MOUSE_OVER, onMOv);
     cbtnPost.addEventListener(MouseEvent.MOUSE_OUT , onMOu);
     cbtnPost.visible = false;
@@ -268,7 +274,7 @@ function Start(fun, ss, tt, rn, counterbalance, posit_ix_, tr_count)
     //Add the piece buttons
     /////////////////
     piece_buttons = [];
-    for (var i=0; i<9; i++)
+    for (var i=0; i < 9; i++)
     {
     	var btn_order = ([[0,1,2,3,4,5,6,7,8],
     	                 [6,7,8,0,1,2,3,4,5],
@@ -284,7 +290,7 @@ function Start(fun, ss, tt, rn, counterbalance, posit_ix_, tr_count)
 
     	                 [8,5,2,7,4,1,6,3,0],
     	                 [6,3,0,8,5,2,7,4,1],
-    	                 [7,4,1,6,3,0,8,5,2]])[counterbalance];
+    	                 [7,4,1,6,3,0,8,5,2]])[ct_balance];
         //Set the colour and local coordinates
         col = cols[Math.floor(i/3)];
         points = [all_points.small, all_points.med, all_points.large][i%3];
@@ -307,14 +313,16 @@ function Start(fun, ss, tt, rn, counterbalance, posit_ix_, tr_count)
         //Right hand side
         s.graphics.beginFill(col, .5);
         s.graphics.moveTo(points.rhs[0].x*half_ratio, points.rhs[0].y*half_ratio);
-        for (var j=1; j<points.rhs.length; j++)
-        {s.graphics.lineTo(points.rhs[j].x*half_ratio, points.rhs[j].y*half_ratio);}
+        for (var j=1; j < points.rhs.length; j++){
+          s.graphics.lineTo(points.rhs[j].x*half_ratio, points.rhs[j].y*half_ratio);
+        }
+
         s.graphics.endFill();
 
         //Left hand side
         s.graphics.beginFill(col, .5);
         s.graphics.moveTo(points.lhs[0].x*half_ratio, points.lhs[0].y*half_ratio);
-        for (var j=1; j<points.rhs.length; j++)
+        for (var j=1; j < points.rhs.length; j++)
         {s.graphics.lineTo(points.lhs[j].x*half_ratio, points.lhs[j].y*half_ratio);}
         s.graphics.endFill();
 
@@ -353,8 +361,7 @@ function NextTest()
 {
     console.log('fired next test');
 
-	if (test_count<start_state.length)
-	{
+	if (test_count<start_state.length){
 		///////////////////////////////////////////////////
 		//Present initial configuration(s) without control
 		///////////////////////////////////////////////////
@@ -366,19 +373,19 @@ function NextTest()
 
 	    console.log('start state', start_state[test_count]);
 
-        for (var i=0; i<start_state[test_count].ids.length; i++)
+        for (var i=0; i< start_state[test_count].ids.length; i++)
         {
         	//var e = {target:{button_ix:start_state.TODO}}
         	var description = {colour:start_state[test_count].colours[i], xpos:start_state[test_count].xpos[i],ypos:start_state[test_count].ypos[i],
         		rotation:start_state[test_count].rotations[i], size:start_state[test_count].sizes[i]};
             AddPiece(null, description);
         }
-		for (var i=0; i<piece_buttons.length; i++)
+		for (var i = 0; i < piece_buttons.length; i++)
         {
             piece_buttons[i].visible = false;
         }
 
-	} else if (test_count<n_tests)
+	} else if (test_count < n_tests)
 	{
 		////////////////////
 		//Free choice trials
@@ -387,7 +394,7 @@ function NextTest()
 
 		parent.document.getElementById("query2").innerHTML=parent.prompt_phase2;
 
-		for (var i=0; i<piece_buttons.length; i++)
+		for (var i=0; i< piece_buttons.length; i++)
         {
             piece_buttons[i].visible = true;
         }
@@ -417,9 +424,9 @@ function NextTest()
 		btn.visible = false;
 		cbtn.visible =false;
 
-		parent.d3.select("#query2").html(parent.prompt_phase3);
+		parent.document.getElementById('query2').inngerHTML = parent.prompt_phase3;
 
-		for (var i=0; i<piece_buttons.length; i++)
+		for (var i=0; i< piece_buttons.length; i++)
         {
             piece_buttons[i].visible = false;
         }
@@ -430,13 +437,13 @@ function NextTest()
         // }
         // trial_pics = [];
 
-        for (var i=0; i<test_trials.length; i++)
+        for (var i=0; i< test_trials.length; i++)
         {
             trialdata.push(test_trials[i])
         	DrawHistory(trialdata, true, phase);
         }
 
-        var t1 = new TextField();
+        t1 = new TextField();
         t1.selectable = false; // default is true
         t1.setTextFormat(f4);
         t1.text = "Which of the arrangements below emit " + rule_name +  " waves?";
@@ -553,8 +560,7 @@ function AddPiece(e, description)
         actor.graphics.beginFill(col, 0.5);
         // actor.graphics.drawRect(-hw*ratio,-hh*ratio,2*hw*ratio,2*hh*ratio);
         actor.graphics.moveTo(raw_points.rhs[0].x*ratio, raw_points.rhs[0].y*ratio);
-        for (var j=1; j<raw_points.rhs.length; j++)
-        {
+        for (var j=1; j< raw_points.rhs.length; j++) {
             actor.graphics.lineTo(raw_points.rhs[j].x*ratio, raw_points.rhs[j].y*ratio);
         }
         actor.graphics.endFill();
@@ -563,7 +569,7 @@ function AddPiece(e, description)
         actor.graphics.beginFill(col, 0.5);
 
         actor.graphics.moveTo(raw_points.lhs[0].x*ratio, raw_points.lhs[0].y*ratio);
-        for (var j=1; j<raw_points.rhs.length; j++)
+        for (var j=1; j< raw_points.rhs.length; j++)
         {
             actor.graphics.lineTo(raw_points.lhs[j].x*ratio, raw_points.lhs[j].y*ratio);
         }
@@ -628,7 +634,7 @@ function onEF(e)
         yPos = e.target.mouseY;
     }
 
-    for(var i=0; i<actors.length; i++)
+    for(var i=0; i < actors.length; i++)
     {
         var body  = bodies[i];
         var actor = actors [i];
@@ -699,7 +705,7 @@ function RemovePiece(e)
         var remb = bodies.splice(id,1);
         removed.push({actor:rema,body:remb});//Keep all the removed actors/bodies here in case we need em
 
-        for (i = 0; i<actors.length; ++i)
+        for (i = 0; i< actors.length; ++i)
         {
             //Renumber the objects that remain
             actors[i].obj_id = i;
@@ -776,7 +782,7 @@ function SelectOption(e)
 
 	var n_selected = 0;
 
-	for (var i=0; i<selected.length; i++)
+	for (var i=0; i< selected.length; i++)
 	{
 		n_selected = n_selected + selected[i];
 	}
@@ -806,7 +812,7 @@ function SelectOptionPosterior(e)
 
 	var n_selected = 0;
 
-	for (var i=0; i<selectedPost.length; i++)
+	for (var i=0; i< selectedPost.length; i++)
 	{
 		n_selected = n_selected + selectedPost[i];
 	}
@@ -846,7 +852,7 @@ function TestDevice(e){
 
 	var check=true;
 	var sum_piece = 0;
-	for (var i=0; i<pieces.length; i++)
+	for (var i=0; i< pieces.length; i++)
     {
         sum_piece+=pieces[i];
     }
@@ -890,7 +896,7 @@ function TestDevice(e){
 
         console.log('performing a test!');
 
-		for (var i=0; i<piece_buttons.length; i++)
+		for (var i=0; i< piece_buttons.length; i++)
         {
             piece_buttons[i].visible = false;
         }
@@ -910,7 +916,7 @@ function TestDevice(e){
         pieces = [0,0,0,0,0,0,0,0,0];
 
 
-        for (i=0; i<bodies.length; i++)
+        for (i=0; i< bodies.length; i++)
         {
             body = bodies[i];
             console.log('body', i, body.GetUserData());
@@ -953,11 +959,11 @@ function TestDevice(e){
         }
 		console.log('performing a test!3');
 
-        for (i=0; i<bodies.length; i++)
+        for (i=0; i< bodies.length; i++)
         {
 
             //Loops over points of contact
-            for (var cont = bodies[i].GetContactList(); cont!=null; cont = cont.next)
+            for (var cont = bodies[i].GetContactList(); cont != null; cont = cont.next)
             {
                 //Report the two entities being considered
                 console.log(' touching ',
@@ -975,7 +981,7 @@ function TestDevice(e){
                         //Check if its been added to i
                         var already_in_subj=false;
                         var already_in_obj=false;
-                        for (var j=0; j<contact[i].length; j++)
+                        for (var j=0; j< contact[i].length; j++)
                         {
                             if (contact[i][j]==cur_id)
                             {
@@ -985,7 +991,7 @@ function TestDevice(e){
 
                         if (cur_id!='ground')
                         {
-                        	for (var j=0; j<contact[cur_id].length; j++)
+                        	for (var j=0; j< contact[cur_id].length; j++)
 	                        {
 	                            if (contact[cur_id][j]==i)
 	                            {
@@ -1006,7 +1012,7 @@ function TestDevice(e){
                         } else {
                         	grounded[i]='yes';
                         }
-                    }//If id isn't i
+                    }//If id isnt i
                 }//If they are actually touching
             }//Loop over cont over contacts for i
         }//Loop i over objects
@@ -1048,10 +1054,7 @@ function TestDevice(e){
 
 
 		setTimeout(ClearUp, eff_time);
-
-
     } else {
-
       console.log("cant test, some condition not met");
     }
 };
@@ -1062,7 +1065,7 @@ function ClearUp()
 	stage.removeChild(w2);
 
 	//Remove bodies and actors
-    for (i=0; i<bodies.length; i++)
+    for (i=0; i < bodies.length; i++)
     {
         stage.removeChild(actors[i]);
         world.DestroyBody(bodies[i]);
@@ -1091,7 +1094,7 @@ function DrawHistory(td, bn, phase)
 {
   	//console.log('drawing history');
 
-       t = (td.length-1);
+    t = (td.length-1);
 
     //bn = CurrentRule(td[t]);
 
@@ -1119,7 +1122,7 @@ function DrawHistory(td, bn, phase)
 
     var objects = [];
     //Loop over objects
-    for (i = 0; i<td[t].ids.length; i++)
+    for (i = 0; i< td[t].ids.length; i++)
     {
 
         if (td[t].colours[i]==='red') {col=cols[0];}
@@ -1139,7 +1142,7 @@ function DrawHistory(td, bn, phase)
         objects[i].graphics.beginFill(col, 0.5);
         // obj.graphics.drawRect(-hw*ratio,-hh*ratio,2*hw*ratio,2*hh*ratio);
         objects[i].graphics.moveTo(raw_points.rhs[0].x*ratio, raw_points.rhs[0].y*ratio);
-        for (var j=1; j<raw_points.rhs.length; j++)
+        for (var j=1; j < raw_points.rhs.length; j++)
         {
           objects[i].graphics.lineTo(raw_points.rhs[j].x*ratio, raw_points.rhs[j].y*ratio);
         }
@@ -1149,7 +1152,7 @@ function DrawHistory(td, bn, phase)
         objects[i].graphics.beginFill(col, 0.5);
 
         objects[i].graphics.moveTo(raw_points.lhs[0].x*ratio, raw_points.lhs[0].y*ratio);
-        for (var j=1; j<raw_points.rhs.length; j++)
+        for (var j=1; j < raw_points.rhs.length; j++)
         {
             objects[i].graphics.lineTo(raw_points.lhs[j].x*ratio, raw_points.lhs[j].y*ratio);
         }
@@ -1192,7 +1195,6 @@ function DrawHistory(td, bn, phase)
 		var w3 = new TextField();
 	    w3.selectable = false; // default is true
 	    w3.setTextFormat(f3);
-
 	    if (test_count<(start_state.length+1))
 	    {
 	    	w3.text = test_count + '.  (example)';
@@ -1208,143 +1210,45 @@ function DrawHistory(td, bn, phase)
         stage.addChild(trial_pics[t]);
 
         console.log('testing stage width for constancy:', stage.stageWidth, trial_pics[t].width, 'pic t:', t);
-
-	    trial_pics[t].width = trial_pics[t].width/4;//stage.stageWidth/4;
-	    trial_pics[t].height = trial_pics[t].height/4;//(stage.stageHeight*frame_height)/4;
-	    trial_pics[t].x=(t%4)*(stage.stageWidth/4);
-	    trial_pics[t].y=Math.floor(t/4)*((stage.stageHeight*frame_height)/4);
+        // if(!isPosterior){
+    	    trial_pics[t].width = trial_pics[t].width/4;//stage.stageWidth/4;
+    	    trial_pics[t].height = trial_pics[t].height/4;//(stage.stageHeight*frame_height)/4;
+    	    trial_pics[t].x=(t%4)*(stage.stageWidth/4);
+    	    trial_pics[t].y=Math.floor(t/4)*((stage.stageHeight*frame_height)/4);
+        // }
     } else {
-
         //add an translucent overlay that people can click on
-        var overlay = new Sprite();
-		overlay.graphics.beginFill(0x000000, 0.1);
-	    overlay.graphics.moveTo(0, 0);
-	    overlay.graphics.lineTo(stage.stageWidth, 0);
-	    overlay.graphics.lineTo(stage.stageWidth, stage.stageHeight*frame_height);
-	    overlay.graphics.lineTo(0, stage.stageHeight*frame_height);
-	    overlay.graphics.endFill();
-		overlay.option_ix = t-8;
-		overlay.alpha = 0;
-    console.log(overlay);
-		trial_pics[t].addChild(overlay);
+              overlay = new Sprite();
+        		  overlay.graphics.beginFill(0x000000, 0.1);
+        	    overlay.graphics.moveTo(0, 0);
+        	    overlay.graphics.lineTo(stage.stageWidth, 0);
+        	    overlay.graphics.lineTo(stage.stageWidth, stage.stageHeight*frame_height);
+        	    overlay.graphics.lineTo(0, stage.stageHeight*frame_height);
+        	    overlay.graphics.endFill();
+        		  overlay.option_ix = t-8;
+        		  overlay.alpha = 0;
+              console.log(overlay);
+        		  trial_pics[t].addChild(overlay);
 
-        stage.addChild(trial_pics[t]);
+              stage.addChild(trial_pics[t]);
 
 	    // trial_pics[t].width = stage.stageWidth/4;
 	    // trial_pics[t].height = stage.stageHeight/4;
 	    // trial_pics[t].x=(t%4)*(stage.stageWidth/4);
 	    // trial_pics[t].y=Math.floor(t/4)*(stage.stageHeight/4) + stage.stageHeight/8;
-        trial_pics[t].width = trial_pics[t].width/4;//stage.stageWidth/4;
-        trial_pics[t].height = trial_pics[t].height/4;//(stage.stageHeight*frame_height)/4;
+              trial_pics[t].width = trial_pics[t].width/4;//stage.stageWidth/4;
+              trial_pics[t].height = trial_pics[t].height/4;//(stage.stageHeight*frame_height)/4;
 
-        trial_pics[t].x=(posit_ix[t-8]%4)*(stage.stageWidth/4);
+              trial_pics[t].x=(posit_ix[t-8]%4)*(stage.stageWidth/4);
 
-        trial_pics[t].y=Math.floor(posit_ix[t-8]/4)*((stage.stageHeight*frame_height)/4) + stage.stageHeight/8;
+              trial_pics[t].y=Math.floor(posit_ix[t-8]/4)*((stage.stageHeight*frame_height)/4) + stage.stageHeight/8;
 
-	    trial_pics[t].addEventListener(MouseEvent.CLICK, SelectOption);
+      	      trial_pics[t].addEventListener(MouseEvent.CLICK, SelectOption);
     }
 
 }//Draw history
 
-// function ClickTextbox(e)
-// {
-//     t3.text = "";
-//     t3.removeEventListener(MouseEvent.CLICK, ClickTextbox);
-// }
 
-// function UpdateTextbox(e)
-// {
-//     console.log(t3.text.length);
-// }
-
-function preparingForPosterior(){
-  for (var i = 0; i < trial_pics.length-8; i++) {
-    trial_pics[i].visible = false;
-  }
-  // remove the select overlay
-  for (var i = 8; i < trial_pics.length; i++) {
-    var numCh = trial_pics[i].numChildren
-    trial_pics[i]._children[numCh-1].alpha = 0;
-    //trial_pics[i].removeChild(trial_pics[i]._children[numCh-1]);
-    trial_pics[i].removeEventListener(MouseEvent.CLICK, SelectOption);
-    trial_pics[i].addEventListener(MouseEvent.CLICK, SelectOptionPosterior);
-}
-    // hide button
-    cbtn.visible = false;
-}
-/////////////////////// H E L P E R S    F U N C T I O N S
-// COPY THESE TO NEW FILES
-function waitingAreaOrNo(user_OTHERfinished) {
-  // display or not the waiting area
-  if((typeof(parent.who_finished ) === "undefined") || parent.who_finished.length % 2 === 0 ){ // if this is the first to finish the trial
-
-    // Add the waiting area here
-    parent.document.getElementById('waiting-area-after-trial').style.display = "block";
-    parent.document.getElementById('user-finished2').innerHTML = user_OTHERfinished;
-
-  }else{ // this is the second to finish the game
-    //  displayes the image block only for themselves
-    //parent.document.getElementById('images-div').style.display = "block";
-    parent.document.getElementById('button-to-posterior-div').style.display = "block";
-    parent.who_finished = [];
-  }
-}
-function getUserDetails(){
-  players_info = parent.players_info;
-  var room = parent.document.getElementById("groupName").value;// this will be the user who finished first
-  var user_finished = parent.document.getElementById("username").value;// this will be the user who finished first
-  var user = players_info[user_finished][0]; // that's the info on whether the user is user1 or user2
-  // now we'll take the name of the other user (not the one who finished now)
-  var idx_OTHERfinished = Math.abs(Object.keys(players_info).indexOf(user_finished) - 1); // this formula will always give us the other number from 0 and 1. e.g if it's 0, it'll give us 1 etc
-  var user_OTHERfinished = Object.keys(players_info)[idx_OTHERfinished];
-  return {user, user_OTHERfinished}
-}
-function pasteScreenShot(trialdata) {
-  var userD = getUserDetails();
-  var user = userD.user;
-  var user_OTHERfinished = userD.user_OTHERfinished;
-
-
-  // put image of what the player did to the YOU section of user x
-  var youIframe = parent.document.getElementById('you-image-'+user);
-  var youIframeContent = (youIframe.contentWindow || youIframe.contentDocument);
-  parent.document.getElementById('images-'+user).style.display = "block";
-  parent.document.getElementById('images-div').style.display = "block"; // we need to momentarily display it before drawing into it because it doesn't work if it is hidden
-  youIframeContent.draw_generalisations(trialdata, selected, posit_ix, 'you-image-'+user);
-  parent.document.getElementById('images-div').style.display = "none";
-  parent.document.getElementById(user+"-other-name").innerHTML = user_OTHERfinished; // this is the name of the user2
-
-
-}// END OF PASTE SCREENSHOT
-
-function draw_ticks_posterior() {
-  // adding ticks on the posterior where appropriate
-  objects = [];
-  for (var t = 8; t < trial_pics.length; t++) {
-
-    if(selected[t-8] === true){
-      var bd  = new BitmapData('/images/tick.png');//tick.png');
-      objects.push(new Bitmap(bd));
-      trial_pics[t].addChild(objects[objects.length-1]);
-      objects[objects.length-1].x=stage.stageWidth*(8/10);
-      objects[objects.length-1].y=stage.stageHeight*(1/10);
-      objects[objects.length-1].scaleX=objects[objects.length-1].scaleY=0.5 * window.devicePixelRatio;
-
-    }
-     if(parent.other_selected[t-8] === true){
-      var bd  = new BitmapData('/images/tick_post.png');//tick.png');
-      objects.push(new Bitmap(bd));
-      trial_pics[t].addChild(objects[objects.length-1]);
-      objects[objects.length-1].x=stage.stageWidth*(2/10);
-      objects[objects.length-1].y=stage.stageHeight*(1/10);
-      objects[objects.length-1].scaleX=objects[objects.length-1].scaleY=0.5 * window.devicePixelRatio;
-    }
-  }
-}
-
-
-
-////////////////////////////////// E N D  O F  H E L P E R S //////////////////////////////
 function AddMessage(pointer)
 {
     stage.addChild(pointer);
@@ -1357,42 +1261,26 @@ function RemoveMessage(pointer)
 
 function Continue(e)
 {
-
-  // getting screenshot of the canva
-  //var height = Math.round(stage.stageHeight); // dimensions of the iframe
-  //var width = Math.round(stage.stageWidth);
-  //var dataURL = ""; //screenShot(width, height);
-  // paste screenshot to the YOU side of the user
-  pasteScreenShot(trialdata);
-
-
-  // destroy  the upper pics and removing the old overlay and create a new one
-  //preparingForPosterior();
-
-  // hidding only the iframe (leave inside query2)
-  parent.document.getElementById("game_frame").style.height = "191px";
-  // display textarea (button included)
-  parent.document.getElementById('phase4-div').style.display = "block";
-  parent.d3.select("#query2").html(parent.prompt_phase4);
-
-  // updating images divisions width from here
-  //var images = parent.document.getElementsByClassName('res-image');
-  //for (var i = 0; i < images.length; i++) {
-  //  images[i].width = 400;
-  //}
-
+  // display the text box for entering the answer of what the rule is
+  // by accessing the parent docment
+  parent.document.getElementById('ruleTextResponse-div').style.display = "block";
+  parent.document.getElementById('query2').innerHTML = parent.prompt_phase4;
+  parent.window.scrollTo({
+    top:400,
+    behavior: 'smooth'
+    });
+//
+//   for(var i=0; i < trial_pics.length; i++){
+//    	stage.removeChild(trial_pics[i]);
+//    }
+//   selected = [false, false, false, false, false, false, false,false];
+//   cbtn.visible = false;
+//   stage.removeChild(t1);
+//   let isPosterior = true;
+//
+// Start(rule, start_state, test_trials, rule_name, ct_balance, posit_ix, trial_num, isPosterior);
 }
 
-
-
-function ContinuePosterior(e){ // reference from the button continue from the posterior
-
-
-// hide game
-parent.document.getElementById('game').style.display = "none";
-// hide images
-parent.document.getElementById('images-div').style.display = "none";
-// display phase 5
-parent.document.getElementById('phase5-div').style.display = "block";
-
+advanceTrial = () => {
+  parent.StartIframe2(isFirstTrial=false);
 }
