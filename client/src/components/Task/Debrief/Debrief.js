@@ -83,7 +83,7 @@ const Debrief = props => {
             pol_orient: state.politicalOrientation,
             token_id: props.tokenId,
         }
-        axios.post('http://localhost:5000/storeDebrief', data)
+        axios.post('https://zendo-cond-3.herokuapp.com/storeDebrief', data)
             .catch(function (error) {
                 console.log(error);
             });
