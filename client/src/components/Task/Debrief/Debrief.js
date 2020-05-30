@@ -32,7 +32,7 @@ const reducer = (state, action) => {
 
 const Debrief = props => {
     const { timer } = props;
-    const [allValid, setAllValid] = useState(false);
+    const [allValid, setAllValid] = useState(true);
     const [state, dispatchState] = useReducer(reducer, {
         generalComment: null,
         age: null,

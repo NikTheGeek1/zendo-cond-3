@@ -12,7 +12,7 @@ const debriefSchema = require('./models/debrief'); // fetching the userSchema in
 
 const uri = "mongodb+srv://ntheodoropoulos:nikblod1!@cluster0-irjmg.mongodb.net/test?retryWrites=true&w=majority"
 
-mongoose.connect(uri, {useNewUrlParser:true, useUnifiedTopology: true })
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
 
 
@@ -20,8 +20,8 @@ mongoose.connect(uri, {useNewUrlParser:true, useUnifiedTopology: true })
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 // Handles any requests that don't match the ones above
-app.get('*', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
 
@@ -35,7 +35,7 @@ app.use(cors({
         if (!origin) return callback(null, true);
         if (allowedOrigins.indexOf(origin) === -1) {
             var msg = 'The CORS policy for this site does not ' +
-                'allow access from the specified Origin.';
+                'allow access from the specified Origin.' + origin;
             return callback(new Error(msg), false);
         }
         return callback(null, true);
@@ -48,8 +48,8 @@ app.use(session({ // allows to save sessions
     resave: true,
     saveUninitialized: true,
     saveInitialized: true,
-    store: new MongoStore({mongooseConnection: mongoose.connection}) // save data to database
-  }))
+    store: new MongoStore({ mongooseConnection: mongoose.connection }) // save data to database
+}))
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -68,8 +68,8 @@ app.post('/storeData', (req, res) => {
     new_trial.rule = data.rule;
     new_trial.ph4_answer = data.ph4_answer;
     new_trial.token_id = data.token_id;
-    new_trial.save(function(err) {
-      if (err)return handleError(err);
+    new_trial.save(function (err) {
+        if (err) return handleError(err);
     });
     res.sendStatus(200);
 });
@@ -77,6 +77,7 @@ app.post('/storeData', (req, res) => {
 
 app.post('/storeDebrief', (req, res) => {
     const data = req.body;
+    console.log(data);
     const new_debrief = new debriefSchema;
     new_debrief.date = data.date;
     new_debrief.generalComment = data.generalComment;
@@ -89,8 +90,8 @@ app.post('/storeDebrief', (req, res) => {
     new_debrief.task_duration = data.task_duration;
     new_debrief.pol_orient = data.pol_orient;
     new_debrief.token_id = data.token_id;
-    new_debrief.save(function(err) {
-      if (err)return handleError(err);
+    new_debrief.save(function (err) {
+        if (err) return handleError(err);
     });
 
     res.sendStatus(200);
