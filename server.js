@@ -14,6 +14,14 @@ const uri = "mongodb+srv://ntheodoropoulos:nikblod1!@cluster0-irjmg.mongodb.net/
 
 mongoose.connect(uri, {useNewUrlParser:true, useUnifiedTopology: true })
 
+
+
+// Handles any requests that don't match the ones above
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
+
+
 // Serve the static files from the React app
 const allowedOrigins = ['http://localhost:3000',
     'http://localhost:5000'];
@@ -91,7 +99,3 @@ app.listen(port);
 
 console.log('App is listening on port ' + port);
 
-// Handles any requests that don't match the ones above
-app.get('*', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
-});
