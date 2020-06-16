@@ -11,10 +11,10 @@ import classes from './Task.module.css';
 
 class Task extends React.Component {
 state = {
-    showEthics: false,
+    showEthics: true,
     showNotes: false,
     showInstructions: false,
-    showGame: true,
+    showGame: false,
     showDebrief: false
 }
 
