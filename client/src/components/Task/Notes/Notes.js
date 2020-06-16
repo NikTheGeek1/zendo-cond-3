@@ -11,11 +11,9 @@ const Notes = ( props ) => {
     <Frame frameTitle="Thank you for joining our experiment">
       <p>Please note that:</p>
         <ul>
-          <li>On the next page, you will register with a username of your choice.</li>
           <li>You will complete instructions and comprehension questions.</li>
-          <li>Afterwards, you will wait in a lobby for another player to join you.</li>
-          <li>Once you are matched with another player, the main task will start.</li>
-          <li>You will be eligible for full payment (up to $7) once both you and the other player complete the hit.</li>
+          <li>Once you finish correctly the comprehension quiz the main task will start.</li>
+          <li style={{color: 'red'}}>You will be eligible for full payment (up to $7) once both you and the other player complete the hit.</li>
           <li>Please minimize the chances of possible distractions - switch off messengers, music, etc.</li>
           <li>Please use full-screen mode.</li>
           <li>You <b>can not</b> use a mobile phone or tablet.</li>

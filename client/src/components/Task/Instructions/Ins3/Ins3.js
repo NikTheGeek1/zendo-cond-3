@@ -15,8 +15,8 @@ const ins3 = ( props ) => {
               <li>Design <b>7</b> of your own arrangements, and test each one to see if it emits this kind of radiation.</li>
               <li>See <b>8</b> other arrangements and guess which of these will emit this kind of radiation.</li>
               <li>Describe the rule that captures what arrangements will emit this radiation in your own words.</li>
-              <li>See the <b>8</b> arragnements again including your initial choices and the choices of the other <b>player</b>.</li>
-              <li><b>Revise</b> your initial choices under consideration of the choices of the other player.</li>
+              <li>Design <b>7</b> new arrangements, and test each one to see if it emits the same kind of radiation.</li>
+              <li><b>Revise</b> your initial choices under consideration of the 7 new arrangements you created.</li>
           </ol>
       <div style={{display: "flex"}}>
         <Button isPrevious clicked={props.buttonPreClicked}><span>Previous</span></Button>

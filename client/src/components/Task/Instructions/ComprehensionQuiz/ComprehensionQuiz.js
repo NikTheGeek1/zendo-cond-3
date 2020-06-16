@@ -12,9 +12,9 @@ class Ins7 extends React.Component {
       {id:1, q:'You will be investigating 5 different types of radiation', selected: null},
       {id:2, q:'For each type, your job is to create arrangements that emit radiation as many times as possible', selected: null},
       {id:3, q:'After doing your experiments, you will make judgments about new arrangements', selected: null},
-      {id:4, q:'The rule can only be to do with the number, sizes, or colors of the cones', selected: null},
+      {id:4, q:'The rule has only to do with the number, sizes, or colors of the cones', selected: null},
       {id:5, q:'The rule might have to do with the order in which you performed your tests', selected: null},
-      {id:6, q:'You may revise your initial choices based on the choices of the other player and earn 5 cents for each one you get right', selected: null}
+      {id:6, q:'You may revise your initial choices based on the 7 new arrangements you created last.', selected: null}
     ],
     isCorrect: false
   };

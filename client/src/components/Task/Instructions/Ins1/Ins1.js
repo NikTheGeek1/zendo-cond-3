@@ -8,7 +8,7 @@ const ins1 = ( props ) => {
     <div>
       <p>Thank you for agreeing to participate!</p>
           <p>In this task you will be using your scientific investigation skills.</p>
-          <p>You and the other player have arrived on a bizarre alien planet where the only objects you can see are colored cones clumped into small groups in an otherwise empty landscape (Figure 1).</p>
+          <p>You have arrived on a bizarre alien planet where the only objects you can see are colored cones clumped into small groups in an otherwise empty landscape (Figure 1).</p>
           <div align="center">
              <img src={Img1} alt="ex1" style={{width:'600px'}} />
              <figcaption>Figure 1 - Bizarre alien planet.</figcaption>

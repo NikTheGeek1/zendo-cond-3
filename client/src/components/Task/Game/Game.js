@@ -58,6 +58,10 @@ class Game extends React.Component {
       } else {
         if (this.state.trial === 5) {
           this.props.buttonClicked();
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
         } else {
           this.setState(prevState => {
             return { trial: prevState.trial + 1 }
