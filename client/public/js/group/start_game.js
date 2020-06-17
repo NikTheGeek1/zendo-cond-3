@@ -87,7 +87,7 @@ function StartIframe2(isFirstTrial = true) {
 
   // start iframe from here if this is not the first trial (if it's the first trial, iframe starts from groupchat)
   trial_num = (5 - trials_order.length);
-  if (trial_num > 0 && trial_num < 6) { // if the first trials is finished
+  if (trial_num > 0 && trial_num < 6) { // if the first trials is finisheed
     console.log("Starting trial ", trial_num);
     // game frame
     var iframe = document.getElementById("game_frame");
