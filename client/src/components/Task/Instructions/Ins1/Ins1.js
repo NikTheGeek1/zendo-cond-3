@@ -20,7 +20,7 @@ const ins1 = ( props ) => {
               <figcaption>Figure 2 - Testing for radiation.  Only the arrangement on the left emits this kind of radiation.</figcaption>
           </div>
           <br />
-          <p>Your job is to come up with experiments to help work out what makes a set of cones emit radiation.</p>
+          <p>Your job is to come up with experiments to help work out what makes a set of cones emit radiation. </p>
             <div style={{display: "flex"}}>
               <Button clicked={props.buttonClicked}><span>Continue</span></Button>
             </div>
