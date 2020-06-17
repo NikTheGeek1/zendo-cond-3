@@ -38,7 +38,7 @@ class Ins4 extends React.Component {
         </ol>
         <p>When you are ready, click ``Test'' to measure your chosen arrangement and see if it is emitting radiation at the current frequency.  If the arrangement follows the rule you will see stars rising to the top of the screen.  Otherwise nothing will happen.  You will be able to see your previous tests and their outcomes at the top of the screen.  Yellow stars indicate tests in which radiation <i>was</i> emitted.</p>
           <div style={{display: "flex"}}>
-            <Button isPrevious clicked={this.props.buttonPreClicked}><span>Previous</span></Button>
+            {/* <Button isPrevious clicked={this.props.buttonPreClicked}><span>Previous</span></Button> */}
             {buttonContinue}
           </div>
       </div>

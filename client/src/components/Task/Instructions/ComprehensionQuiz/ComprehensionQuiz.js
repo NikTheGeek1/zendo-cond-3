@@ -64,7 +64,7 @@ modalHandler = () => {
         </Modal>
         {questions}
           <div style={{display: "flex"}}>
-            <Button isPrevious clicked={this.props.buttonPreClicked}><span>Previous</span></Button>
+            {/* <Button isPrevious clicked={this.props.buttonPreClicked}><span>Previous</span></Button> */}
             <Button clicked={this.modalHandler}><span>Continue</span></Button>
           </div>
     </div>
