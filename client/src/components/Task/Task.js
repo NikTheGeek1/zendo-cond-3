@@ -45,7 +45,6 @@ debriefButtonHandler = () => {
 
 
 render () {
-
   let ethics = null;
   if (this.state.showEthics){
     ethics = <Ethics timer={this.props.timer} buttonClicked={this.ethicsButtonHandler} />;
