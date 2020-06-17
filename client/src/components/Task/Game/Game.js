@@ -104,6 +104,8 @@ class Game extends React.Component {
     iframeContent.selected = [false, false, false, false, false, false, false, false];
     iframeContent.cbtn.visible = false;
     iframeContent.stage.removeChild(iframeContent.t1);
+    iframeContent.stage.removeChild(iframeContent.t1Posterior);
+
     document.getElementById('query2').innerHTML = "<b style='text-align:center; color:red'>This is a NEW trial. This is a new rule!</b>";
     iframeContent.advanceTrial();
     window.scrollTo({

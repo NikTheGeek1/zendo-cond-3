@@ -438,6 +438,7 @@ function NextTest() {
             DrawHistory(trialdata, true, phase);
         }
         let t1YPosition = 0.425;
+        console.log(isPosterior, 'zendo', '441');
         if (isPosterior) {
             t1YPosition = 0.4;
             t1Posterior = new TextField();
