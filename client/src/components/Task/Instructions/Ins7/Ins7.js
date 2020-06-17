@@ -17,9 +17,9 @@ class Ins7 extends React.Component {
   }
     return (
       <div>
-          <p style={{color: 'red'}}>Finally, you will be asked to <b>revise</b> your initial choices based on the 7 new arrangements you created. The other player will have performed <b>different experiments</b>, meaning that their knowledge about radiation may help <b>improve</b> the accuracy of your choices (and so increase your bonus).</p>
+          <p>Finally, you will be asked to <b>revise</b> your initial choices based on the 7 new arrangements you created.</p>
 
-           <p style={{color: 'red'}}>Specifically, you will receive a cash bonus of <b>5 cents</b> for each of the arrangements you guess correctly about after considering the choices of the other player (watch video).  This means that you can make a bonus of up to $0.05 &#215; 5 radiation types &#215; 8 test arrangements = $2.  Play the video below to continue.</p>
+           <p>You will receive a cash bonus of <b>5 cents</b> for each of the arrangements you guess correctly about after revising your initial choices.  This means that you can make a bonus of up to $0.05 &#215; 5 radiation types &#215; 8 test arrangements = $2.  Play the video below to continue.</p>
 
           <div align="center">
             <video controls style={{height:"450px"}}

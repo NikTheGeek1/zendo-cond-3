@@ -13,7 +13,7 @@ const Notes = ( props ) => {
         <ul>
           <li>You will complete instructions and comprehension questions.</li>
           <li>Once you finish correctly the comprehension quiz the main task will start.</li>
-          <li style={{color: 'red'}}>You will be eligible for full payment (up to $7) once both you and the other player complete the hit.</li>
+          <li>You will be eligible for full payment (up to $6) once you complete the hit.</li>
           <li>Please minimize the chances of possible distractions - switch off messengers, music, etc.</li>
           <li>Please use full-screen mode.</li>
           <li>You <b>can not</b> use a mobile phone or tablet.</li>

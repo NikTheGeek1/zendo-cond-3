@@ -52,6 +52,7 @@ class Game extends React.Component {
         trial: iframeContent.trial_num,
         data: iframeContent.trialdata,
       };
+      console.log(iframeContent.selected, 'Game', '55');
       this.sendDataToServer(data);
       if (!this.state.isPosterior) {
         this.goToPosterior(data);
@@ -123,6 +124,7 @@ class Game extends React.Component {
     for (var i = 0; i < iframeContent.trial_pics.length; i++) {
       iframeContent.stage.removeChild(iframeContent.trial_pics[i]);
     }
+    iframeContent.selectedPrior = [...iframeContent.selected];
     iframeContent.selected = [false, false, false, false, false, false, false, false];
     iframeContent.cbtn.visible = false;
     iframeContent.stage.removeChild(iframeContent.t1);
