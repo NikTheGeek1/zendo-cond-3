@@ -14,7 +14,7 @@ const ins6 = ( props ) => {
       <p><b>Note:</b> The true rule has <i>nothing to do with:</i> the radiation's name; <i>nor</i> the way radiation might work on Earth; <i>nor</i> the order in which you perform your tests <i>nor</i> with what was true for the other frequencies of radiation.  I.e., on this planet, all types of radiation operate independently.</p><br/><br/>
 
       <div style={{display: "flex"}}>
-        <Button isPrevious clicked={props.buttonPreClicked}><span>Previous</span></Button>
+        {/* <Button isPrevious clicked={props.buttonPreClicked}><span>Previous</span></Button> */}
         <Button clicked={props.buttonClicked}><span>Continue</span></Button>
       </div>
     </div>

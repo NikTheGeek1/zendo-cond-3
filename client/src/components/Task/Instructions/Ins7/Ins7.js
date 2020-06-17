@@ -30,7 +30,7 @@ class Ins7 extends React.Component {
           </div>
 
           <div style={{display: "flex"}}>
-            <Button isPrevious clicked={this.props.buttonPreClicked}><span>Previous</span></Button>
+            {/* <Button isPrevious clicked={this.props.buttonPreClicked}><span>Previous</span></Button> */}
             {buttonContinue}
           </div>
     </div>

@@ -32,7 +32,7 @@ const ins2 = ( props ) => {
           </ol>
       <p>So, as you can see, the radiation works quite differently here than on Earth.  It might be caused by many different things such as the cones&#39; number, sizes, colors, positions, orientations, as well as more complicated relationships between them.</p>
         <div style={{display: "flex"}}>
-          <Button isPrevious clicked={props.buttonPreClicked}><span>Previous</span></Button>
+          {/* <Button isPrevious clicked={props.buttonPreClicked}><span>Previous</span></Button> */}
           <Button clicked={props.buttonClicked}><span>Continue</span></Button>
         </div>
     </div>

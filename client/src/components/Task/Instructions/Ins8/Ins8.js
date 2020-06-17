@@ -14,7 +14,7 @@ const ins8 = ( props ) => {
         <li>You will then create 7 more arrangements. Make sure you consider these new arrangements carefully, they might help improve your accuracy to increase your overall bonus </li>
       </ol>
       <div style={{display: "flex"}}>
-        <Button isPrevious clicked={props.buttonPreClicked}><span>Previous</span></Button>
+        {/* <Button isPrevious clicked={props.buttonPreClicked}><span>Previous</span></Button> */}
         <Button clicked={props.buttonClicked}><span>Continue</span></Button>
       </div>
     </div>

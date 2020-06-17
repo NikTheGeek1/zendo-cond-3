@@ -19,7 +19,7 @@ const ins3 = ( props ) => {
               <li><b>Revise</b> your initial choices under consideration of the 7 new arrangements you created.</li>
           </ol>
       <div style={{display: "flex"}}>
-        <Button isPrevious clicked={props.buttonPreClicked}><span>Previous</span></Button>
+        {/* <Button isPrevious clicked={props.buttonPreClicked}><span>Previous</span></Button> */}
         <Button clicked={props.buttonClicked}><span>Continue</span></Button>
       </div>
     </div>
