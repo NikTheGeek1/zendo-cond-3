@@ -145,7 +145,7 @@ class Game extends React.Component {
       true,
       iframeContent.phase);
 
-    document.getElementById('query2').innerHTML = "<p style='text-align:center; color:red'><b>Re-create 7 more scenes following the same rule</b>" + document.getElementById('query2').innerHTML
+    document.getElementById('query2').innerHTML = "<p style='text-align:center; color:red'><b>Now create 7 more scenes. The rule is the same as before</b>" + document.getElementById('query2').innerHTML
 
   };
 
