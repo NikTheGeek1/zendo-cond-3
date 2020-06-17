@@ -4,7 +4,7 @@ import Button from '../../../Button/Button';
 
 // importing movies
 import vid1_2 from '../../../../Assets/movies/collaborator.mp4';
-
+import { connect } from 'react-redux';
 
 class Ins7 extends React.Component {
   state = {
@@ -12,7 +12,7 @@ class Ins7 extends React.Component {
    }
   render() {
     let buttonContinue = <Button disabled clicked={this.props.buttonClicked}><span>Continue</span></Button>;
-    if(this.state.videoFinished){
+    if(this.state.videoFinished || this.props.restartedInstructions){
     buttonContinue = <Button clicked={this.props.buttonClicked}><span>Continue</span></Button>;
   }
     return (
@@ -38,4 +38,11 @@ class Ins7 extends React.Component {
   }
 }
 
-export default Ins7;
+
+const mapStateToProps = state => {
+  return {
+    restartedInstructions: state.restartedInstructions,
+  };
+};
+
+export default connect(mapStateToProps)(Ins7);

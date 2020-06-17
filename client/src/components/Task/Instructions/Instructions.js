@@ -11,6 +11,8 @@ import Ins6 from './Ins6/Ins6';
 import Ins7 from './Ins7/Ins7';
 import Ins8 from './Ins8/Ins8';
 import CompQuiz from './ComprehensionQuiz/ComprehensionQuiz';
+import { restartInstructions } from '../../../store/actions';
+import { connect } from 'react-redux';
 
 
 
@@ -92,6 +94,7 @@ class Instructions extends React.Component {
 
   // navigation compQuiz
   compQuizModalButtonWRONG = () => {
+    this.props.onSetRestartedInstructions();
     this.setState({showCompQuiz: false, showIns1: true})
   };
   // We don't need this one as we have the button handler from above (Task.js)
@@ -191,4 +194,11 @@ class Instructions extends React.Component {
 }
 
 
-export default Instructions;
+const mapDispatchToProps = dispatch => {
+  return {
+    onSetRestartedInstructions: () => dispatch(restartInstructions()),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Instructions);
+

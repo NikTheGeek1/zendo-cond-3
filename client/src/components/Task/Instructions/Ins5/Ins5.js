@@ -5,6 +5,7 @@ import Button from '../../../Button/Button';
 // importing movies
 import vid1_1 from '../../../../Assets/movies/selection_mu.mp4';
 import vid1_2 from '../../../../Assets/movies/selection_mu.mov';
+import { connect } from 'react-redux';
 
 
 class Ins5 extends React.Component {
@@ -13,7 +14,7 @@ class Ins5 extends React.Component {
    }
   render() {
     let buttonContinue = <Button disabled clicked={this.props.buttonClicked}><span>Continue</span></Button>;
-    if(this.state.videoFinished){
+    if(this.state.videoFinished || this.props.restartedInstructions){
     buttonContinue = <Button clicked={this.props.buttonClicked}><span>Continue</span></Button>;
   }
     return (
@@ -37,4 +38,11 @@ class Ins5 extends React.Component {
   }
 }
 
-export default Ins5;
+
+const mapStateToProps = state => {
+  return {
+    restartedInstructions: state.restartedInstructions,
+  };
+};
+
+export default connect(mapStateToProps)(Ins5);
